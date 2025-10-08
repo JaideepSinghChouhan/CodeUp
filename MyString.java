@@ -1,11 +1,22 @@
+/**
+ * @filename-MyString.java
+ * @description-A custom string manipulation class with various methods.
+ * @author-JD
+ */
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class MyString {
     private String str;
 
     public MyString(String str) {
         this.str = str;
+    }
+
+    @Override
+    public String toString() {
+        return this.str;
     }
 
     String append(String str1) {
@@ -55,10 +66,34 @@ public class MyString {
     }
     
     public String[] split(String pattern) {
-        if (pattern == null || pattern.isEmpty()) {
-            return str.trim().split("\\s+");
-        }
-        return str.split(pattern);
+        ArrayList<String> list=new ArrayList<>();
+        int i=0;
+        String str="";
+        while(i<this.str.length()-pattern.length()+1){
+            boolean flag=true;
+            for(int j=0;j<pattern.length();j++){
+                if(this.str.charAt(i+j)!=pattern.charAt(j)){
+                    flag=false;
+                    break;
+                }
+            }    
+                if(flag){
+                    list.add(str);
+                    str="";
+                    i+=pattern.length();
+                }
+                else{
+                  str+=this.str.charAt(i);
+                  i++;
+                }
+            }
+
+
+       while(i<this.str.length())
+            str+=this.str.charAt(i++);
+
+        list.add(str);
+       return list.toArray(new String[0]);
     }
 
 
@@ -147,46 +182,4 @@ public class MyString {
 
         return new String(chars);
     }
-
-
-
-    public static void main(String[] args) {
-        System.out.println("Enter Your String: ");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        MyString myString = new MyString(input);
-        System.out.println("Original string: " + myString.str);
-        //Append
-        System.out.println(myString.append(" How are you?"));
-        //Count words
-        System.out.println("Word count: " + myString.countWords());
-        //Replace characters
-        System.out.println("After replace: " + myString.replace("o", "0"));
-        //Check palindrome
-        MyString palString = new MyString("racecar");
-        System.out.println("Is palindrome: " + palString.isPalindrome());
-        //splice
-        MyString spliceString = new MyString("Hello, World!");
-        System.out.println("Before splice: " + spliceString.str);
-        System.out.println("After splice(7,5): " + spliceString.splice(7, 5));
-        // split
-        MyString intro = new MyString("My name is JD");
-        String [] wordStrings = intro.split(null);
-        System.out.println("Split default (whitespace): " + java.util.Arrays.toString(wordStrings));
-        // Most frequent character
-        MyString Success = new MyString("Success");
-        System.out.println("Most frequent char in 'Success': " + Success.mostFrequentChar());
-        // Sort
-        System.out.println("Sorted 'Success': " + Success.sort());
-        // Shift
-        MyString shiftString = new MyString("abcdef");
-        System.out.println("Before shift: " + shiftString.str);
-        System.out.println("After shift(2): " + shiftString.shift(2));
-        //Reverse
-        MyString revString = new MyString("abcdef");
-        System.out.println("Before reverse: " + revString.str);
-        System.out.println("After reverse: " + revString.reverse());
-
-    }
-    
 }    
