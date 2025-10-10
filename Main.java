@@ -36,7 +36,7 @@ public class Main {
         System.out.println("Split default (whitespace): " + java.util.Arrays.toString(wordStrings));
         // Most frequent character
         MyString Success = new MyString("success");
-        System.out.println("Most frequent char in 'Success': " + Success.mostFrequentChar());
+        System.out.println("Most frequent char in 'Success': " + Success.getmostFrequentChar());
         // Sort
         System.out.println("Sorted 'Success': " + Success.sort());
         // Shift

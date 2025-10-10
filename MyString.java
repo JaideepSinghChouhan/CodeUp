@@ -8,111 +8,111 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyString {
-    private String str;
+    private String value;
 
-    public MyString(String str) {
-        this.str = str;
+    public MyString(String words) {
+        this.value = words;
     }
 
     @Override
     public String toString() {
-        return this.str;
+        return this.value;
     }
 
     String append(String str1) {
         String toAppend = (str1 == null) ? "" : str1;
-        if (this.str == null) {
-            this.str = toAppend;
+        if (this.value == null) {
+            this.value = toAppend;
         } else {
-            this.str = this.str + toAppend;
+            this.value = this.value + toAppend;
         }
-        return this.str;
+        return this.value;
     }
-    
-    public String replace(String a, String b) {
-    
-        if (a == null || a.length() == 0 || b == null || b.length() == 0) {
-            return this.str;
+
+    public String replace(String firstString, String secondString) {
+
+        if (firstString == null || firstString.length() == 0 || secondString == null || secondString.length() == 0) {
+            return this.value;
         }
-        if (this.str == null) {
+        if (this.value == null) {
             return null;
         }
-        //If `a` or `b` has length > 1, use only the first character.
-        char oldChar = a.charAt(0);
-        char newChar = b.charAt(0);
-        this.str = this.str.replace(oldChar, newChar);
-        return this.str;
+        //If `firstString` or `secondString` has length > 1, use only the first character.
+        char oldChar = firstString.charAt(0);
+        char newChar = secondString.charAt(0);
+        this.value = this.value.replace(oldChar, newChar);
+        return this.value;
     }
     
     public String splice(int start, int length) {
-        if (this.str == null) {
+        if (this.value == null) {
             return null;
         }
         if (length <= 0) {
-            return this.str;
+            return this.value;
         }
-        
-        if (start >= this.str.length()) {
-            return this.str;
+
+        if (start >= this.value.length()) {
+            return this.value;
         }
 
         int end = start + length;
-        if (end > this.str.length()) {
-            end = this.str.length();
+        if (end > this.value.length()) {
+            end = this.value.length();
         }
         // Build new string without the specified substring
-        this.str = this.str.substring(0, start) + this.str.substring(end);
-        return this.str;
+        this.value = this.value.substring(0, start) + this.value.substring(end);
+        return this.value;
     }
     
     public String[] split(String pattern) {
         ArrayList<String> list=new ArrayList<>();
         int i=0;
-        String str="";
-        while(i<this.str.length()-pattern.length()+1){
+        String string="";
+        while(i<this.value.length()-pattern.length()+1){
             boolean flag=true;
             for(int j=0;j<pattern.length();j++){
-                if(this.str.charAt(i+j)!=pattern.charAt(j)){
+                if(this.value.charAt(i+j)!=pattern.charAt(j)){
                     flag=false;
                     break;
                 }
             }    
                 if(flag){
-                    list.add(str);
-                    str="";
+                    list.add(string);
+                    string="";
                     i+=pattern.length();
                 }
                 else{
-                  str+=this.str.charAt(i);
+                  string+=this.value.charAt(i);
                   i++;
                 }
             }
 
 
-       while(i<this.str.length())
-            str+=this.str.charAt(i++);
+       while(i<this.value.length())
+            string+=this.value.charAt(i++);
 
-        list.add(str);
+        list.add(string);
        return list.toArray(new String[0]);
     }
 
 
     
     int countWords(){
-        if (str == null || str.isEmpty()) {
+        if (this.value == null || this.value.isEmpty()) {
             return 0;
         }
-        String[] words = str.trim().split("\\s+");
+        String[] words = this.value.trim().split("\\s+");
         return words.length;
     }
 
     boolean isPalindrome() {
-        if (str == null) {
+        if (this.value == null) {
             return false;
         }
-        int left = 0, right = str.length() - 1;
+        int left = 0, right = this.value.length() - 1;
         while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
+            if (this.value.charAt(left) != this.value.charAt(right)) {
                 return false;
             }
             left++;
@@ -121,11 +121,11 @@ public class MyString {
         return true;
     }
 
-    char mostFrequentChar() {
-        if (this.str == null || this.str.isEmpty())
+    char getmostFrequentChar() {
+        if (this.value == null || this.value.isEmpty())
             return ' ';
 
-        String s = this.str.toLowerCase();
+        String s = this.value.toLowerCase();
         int[] freq = new int[256];
         int maxFreq = 0;
         char result = ' ';
@@ -141,11 +141,11 @@ public class MyString {
     }
 
     String sort() {
-        if (this.str == null || this.str.isEmpty()) {
-            return this.str;
+        if (this.value == null || this.value.isEmpty()) {
+            return this.value;
         }
 
-        char[] chars = this.str.toCharArray();
+        char[] chars = this.value.toCharArray();
 
         Arrays.sort(chars);
 
@@ -153,33 +153,33 @@ public class MyString {
     }
 
     String shift( int n) {
-        if (this.str == null || this.str.isEmpty()) {
-            return this.str;
+        if (this.value == null || this.value.isEmpty()) {
+            return this.value;
         }
 
-        int len = this.str.length();
+        int len = this.value.length();
         n = n % len;
-        String shifted = this.str.substring(n) + this.str.substring(0, n);
+        String shifted = this.value.substring(n) + this.value.substring(0, n);
 
         return shifted;
     }
 
     String reverse() {
-        if (this.str == null || this.str.isEmpty()) return this.str;
+        if (this.value == null || this.value.isEmpty()) return this.value;
 
-        char[] chars = this.str.toCharArray();
-        int i = 0, j = chars.length - 1;
+        char[] characters = this.value.toCharArray();
+        int i = 0, j = characters.length - 1;
 
         while (i < j) {
             // Swap characters at positions i and j
-            char temp = chars[i];
-            chars[i] = chars[j];
-            chars[j] = temp;
+            char temp = characters[i];
+            characters[i] = characters[j];
+            characters[j] = temp;
 
             i++;
             j--;
         }
 
-        return new String(chars);
+        return new String(characters);
     }
 }    
