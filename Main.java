@@ -34,8 +34,12 @@ public class Main {
         System.out.println("Enter a string to splice: ");
         String spliceInput = scanner.nextLine();
         MyString spliceString = new MyString(spliceInput);
+        System.out.println("Enter start index and length to splice (space separated): ");
+        int start = scanner.nextInt();
+        int length = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
         System.out.println("Before splice: " + spliceString.toString());
-        System.out.println("After splice(7,5): " + spliceString.splice(7, 5));
+        System.out.println("After splice(" + start + "," + length + "): " + spliceString.splice(start, length));
         // split
         System.out.println("Enter a string to split: ");
         String splitInput = scanner.nextLine();
@@ -56,8 +60,11 @@ public class Main {
         System.out.println("Enter a string to shift: ");
         String shiftInput = scanner.nextLine();
         MyString shiftString = new MyString(shiftInput);
+        System.out.println("Enter the number of positions to shift: ");
+        int positions = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
         System.out.println("Before shift: " + shiftString.toString());
-        System.out.println("After shift(2): " + shiftString.shift(2));
+        System.out.println("After shift(" + positions + "): " + shiftString.shift(positions));
         //Reverse
         System.out.println("Enter a string to reverse: ");
         String revInput = scanner.nextLine();

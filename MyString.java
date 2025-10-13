@@ -4,7 +4,6 @@
  * @author-JD
  */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyString {
@@ -66,34 +65,63 @@ public class MyString {
     }
     
     public String[] split(String pattern) {
-        ArrayList<String> list=new ArrayList<>();
-        int i=0;
-        String string="";
-        while(i<this.value.length()-pattern.length()+1){
-            boolean flag=true;
-            for(int j=0;j<pattern.length();j++){
-                if(this.value.charAt(i+j)!=pattern.charAt(j)){
-                    flag=false;
+        if (this.value == null || pattern == null) {
+            return new String[]{this.value};
+        }
+        
+        // First pass: count how many parts we'll have
+        int count = 1; // At least one part
+        int i = 0;
+        while (i <= this.value.length() - pattern.length()) {
+            boolean flag = true;
+            for (int j = 0; j < pattern.length(); j++) {
+                if (this.value.charAt(i + j) != pattern.charAt(j)) {
+                    flag = false;
                     break;
                 }
-            }    
-                if(flag){
-                    list.add(string);
-                    string="";
-                    i+=pattern.length();
-                }
-                else{
-                  string+=this.value.charAt(i);
-                  i++;
+            }
+            if (flag) {
+                count++;
+                i += pattern.length();
+            } else {
+                i++;
+            }
+        }
+        
+        // Create array of exact size needed
+        String[] result = new String[count];
+        int index = 0;
+        i = 0;
+        String currentString = "";
+        
+        // Second pass: actually split and fill the array
+        while (i <= this.value.length() - pattern.length()) {
+            boolean flag = true;
+            for (int j = 0; j < pattern.length(); j++) {
+                if (this.value.charAt(i + j) != pattern.charAt(j)) {
+                    flag = false;
+                    break;
                 }
             }
-
-
-       while(i<this.value.length())
-            string+=this.value.charAt(i++);
-
-        list.add(string);
-       return list.toArray(new String[0]);
+            if (flag) {
+                result[index] = currentString;
+                index++;
+                currentString = "";
+                i += pattern.length();
+            } else {
+                currentString += this.value.charAt(i);
+                i++;
+            }
+        }
+        
+        // Add remaining characters to the last part
+        while (i < this.value.length()) {
+            currentString += this.value.charAt(i);
+            i++;
+        }
+        result[index] = currentString;
+        
+        return result;
     }
 
 
