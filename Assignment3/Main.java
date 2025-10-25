@@ -1,3 +1,9 @@
+/**
+ * @filename-Main.java
+ * @description-The main entry point for the Java Game Hub application.
+ * @author-JD
+ */
+
 package Assignment3;
 
 import java.util.Scanner;

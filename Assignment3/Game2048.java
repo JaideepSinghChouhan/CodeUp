@@ -1,3 +1,9 @@
+/**
+ * @filename-Game2048.java
+ * @description-A console-based implementation of the 2048 game.
+ * @author-JD
+ */
+
 package Assignment3;
 
 import java.util.Random;
