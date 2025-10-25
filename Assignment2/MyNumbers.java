@@ -3,9 +3,6 @@
  * @description-A custom Number manipulation class with various methods such as Fibonacci calculation, prime checking, and number-to-word conversion.
  * @author-JD
  */
-
-
-
 package Assignment2;
 
 public class MyNumbers {
@@ -14,7 +11,7 @@ public class MyNumbers {
     int getNthFibonacci(int n){
         if(n<=0) return 0;
         if(n==1) return 1;
-        return getNthFibonacci(n-1)+getNthFibonacci(n-2);
+        return getNthFibonacci(n-1) + getNthFibonacci(n-2);
     }
     
     //Prime number check
@@ -52,17 +49,25 @@ public class MyNumbers {
         return result.trim();
     }
 
-    double getBinaryToDecimal(String binary){
+    double toDecimal(String binary){
         double decimal=0;
         String[] partitionString=binary.split("\\.");
         String wholePart=partitionString[0];
         for(int i=0;i<wholePart.length();i++){
+            if(wholePart.charAt(i)!=0 && wholePart.charAt(i)!=1){
+                System.out.println("Invalid Binary String");
+                return 0;
+            }
             if(wholePart.charAt(wholePart.length()-1-i)=='1'){
                 decimal+=Math.pow(2, i);
             }
         }
         if(partitionString.length>1){
             for(int i=0;i<partitionString[1].length();i++){
+                if(partitionString[1].charAt(i)!=0 && partitionString[1].charAt(i)!=1){
+                System.out.println("Invalid Binary String");
+                return 0;
+            }
             if(partitionString[1].charAt(i)=='1'){
                 decimal+=1/Math.pow(2, i+1);
             }

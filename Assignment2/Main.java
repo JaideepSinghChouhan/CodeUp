@@ -51,7 +51,7 @@ public class Main {
          case 4:
             System.out.println("Enter a binary number to convert to decimal:");
             String binary = scanner.next();
-            System.out.println("Decimal value: " + numbers.getBinaryToDecimal(binary));
+            System.out.println("Decimal value: " + numbers.toDecimal(binary));
             break;
          case 5:
               System.out.println("Enter a string to count unique palindromic substrings:");
@@ -65,7 +65,7 @@ public class Main {
                 scanner.nextLine(); // Consume newline
                 String snakeStr = scanner.nextLine();
                 MyString snakeString = new MyString(snakeStr);
-                System.out.println("CamelCase: " + snakeString.snakeToCamelCase());
+                System.out.println("CamelCase: " + snakeString.toCamelCase());
                 break;
          case 7:
                System.out.println("Enter a string to count consonants:");

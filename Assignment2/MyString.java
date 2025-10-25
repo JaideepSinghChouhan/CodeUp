@@ -11,15 +11,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MyString {
-    private String str;
+    private String value;
 
     public MyString(String str) {
-        this.str = str;
+        this.value = str;
     }
 
     @Override
     public String toString() {
-        return this.str;
+        return this.value;
     }
 
     // Helper method to check if a string is a palindrome
@@ -40,17 +40,17 @@ public class MyString {
 
     // Count the number of unique palindromic substrings
     public int countUniquePalindromes() {
-        if (this.str == null || this.str.isEmpty()) {
+        if (this.value == null || this.value.isEmpty()) {
             return 0;
         }
         
         Set<String> uniquePalindromes = new HashSet<>();
-        int n = this.str.length();
+        int n = this.value.length();
         
         // Check all possible substrings
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
-                String substring = this.str.substring(i, j + 1);
+                String substring = this.value.substring(i, j + 1);
                 // Only consider substrings of length 2 or more as meaningful palindromes
                 if (substring.length() >= 2 && isPalindrome(substring)) {
                     uniquePalindromes.add(substring);
@@ -62,16 +62,16 @@ public class MyString {
     }
 
     // Convert snake_case string to camelCase format
-    public String snakeToCamelCase() {
-        if (this.str == null || this.str.isEmpty()) {
-            return this.str;
+    public String toCamelCase() {
+        if (this.value == null || this.value.isEmpty()) {
+            return this.value;
         }
         
         String result = "";
         boolean capitalizeNext = false;
         
-        for (int i = 0; i < this.str.length(); i++) {
-            char c = this.str.charAt(i);
+        for (int i = 0; i < this.value.length(); i++) {
+            char c = this.value.charAt(i);
             
             if (c == '_') {
                 // Skip underscore and capitalize the next character
@@ -90,22 +90,22 @@ public class MyString {
     }
 
     int countConsonants() {
-        if (this.str == null || this.str.isEmpty()) {
+        if (this.value == null || this.value.isEmpty()) {
             return 0;
         }
-        int count = 0;
+        int consonants = 0;
         String vowels = "aeiouAEIOU";
-        for (char c : this.str.toCharArray()) {
+        for (char c : this.value.toCharArray()) {
             if (Character.isLetter(c) && vowels.indexOf(c) == -1) {
-                count++;
+                consonants++;
             }
         }
-        return count;
+        return consonants;
     }
 
     String expand(String pattern){
-        if(pattern==null || pattern.isEmpty() || this.str==null || this.str.isEmpty())
-            return this.str;
+        if(pattern==null || pattern.isEmpty() || this.value==null || this.value.isEmpty())
+            return this.value;
 
         String result="";
         for(int i=0;i<pattern.length();i++){
@@ -130,8 +130,8 @@ public class MyString {
     }
 
     String compress(String pattern){
-        if(pattern==null || pattern.isEmpty() || this.str==null || this.str.isEmpty())
-            return this.str;
+        if(pattern==null || pattern.isEmpty() || this.value==null || this.value.isEmpty())
+            return this.value;
 
         String result="";
         int count=1;
