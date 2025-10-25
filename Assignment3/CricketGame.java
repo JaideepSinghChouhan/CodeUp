@@ -1,3 +1,9 @@
+/**
+ * @filename-CricketGame.java
+ * @description-A simple console-based cricket game simulation.
+ * @author-JD
+ */
+
 package Assignment3;
 import java.util.*;
 
